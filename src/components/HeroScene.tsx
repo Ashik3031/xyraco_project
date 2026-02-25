@@ -176,11 +176,27 @@ export default function HeroScene({ primaryColor }: { primaryColor: string }) {
 
         // --- Animation Loop ---
         let lastTime = performance.now();
+        let animationFrameId: number;
+        let isVisible = true;
+
+        // Intersection Observer to prevent continuous painting when scrolled away
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                isVisible = entry.isIntersecting;
+            },
+            { threshold: 0 }
+        );
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
         const animate = () => {
+            animationFrameId = requestAnimationFrame(animate);
+
+            if (!isVisible) return; // Skip heavy rendering when off-screen
+
             const time = performance.now();
             lastTime = time;
-
-            requestAnimationFrame(animate);
 
             // Step Physics
             world.fixedStep();
@@ -247,6 +263,8 @@ export default function HeroScene({ primaryColor }: { primaryColor: string }) {
             }
             scene.clear();
             renderer.dispose();
+            cancelAnimationFrame(animationFrameId);
+            observer.disconnect();
         };
     }, []);
 

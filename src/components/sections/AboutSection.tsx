@@ -1,80 +1,162 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-
-const values = [
-    {
-        title: "RADICAL CANDOR",
-        description: "We don't sugarcoat. If an idea won't work, we tell you day one. It save time, money, and reputations.",
-    },
-    {
-        title: "ELITE ENGINEERING",
-        description: "We are a small, high-density team of engineers. We build for performance, scale, and long-term stability.",
-    },
-    {
-        title: "RISK ALIGNMENT",
-        description: "We aren't an agency. We are partners. We share the downside to ensure we maximize the upside.",
-    },
-];
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function AboutSection() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"],
+    });
+
+    // The entire path draws itself as the user scrolls
+    const pathLength = useTransform(scrollYProgress, [0, 0.9], [0, 1]);
+
     return (
-        <section className="py-40 bg-background relative overflow-hidden">
-            <div className="container mx-auto px-6">
-                <div className="flex flex-col lg:flex-row gap-24 mb-60">
-                    <div className="lg:w-1/2">
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-6xl md:text-8xl font-bold text-black tracking-super-tight uppercase leading-[0.9] italic"
-                        >
-                            WE ARE NOT AN AGENCY. <br />
-                            <span className="stroke-text" style={{ WebkitTextStroke: '2px rgba(0,0,0,0.1)' }}>WE ARE PARTNERS.</span>
-                        </motion.h2>
-                    </div>
-                    <div className="lg:w-1/2">
+        <section ref={containerRef} className="py-24 md:py-40 bg-[#f4f5f9] relative overflow-hidden text-black z-10 font-sans">
+            {/* SVG Continuous Curve Background */}
+            <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden h-[110%] top-0">
+                <svg
+                    className="w-[150%] md:w-full h-full absolute top-0 -left-[25%] md:left-0"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
+                >
+                    <motion.path
+                        // A sweeping curve that hits multiple parts of the section
+                        d="M -10 10 
+                           C 40 20, 80 -10, 50 30 
+                           C 20 70, -30 40, 40 65 
+                           C 110 90, 120 70, 70 85 
+                           C 20 100, -10 90, 50 110"
+                        fill="none"
+                        stroke="#4151FF"
+                        strokeWidth="36" // Thick, rich blue line
+                        vectorEffect="non-scaling-stroke"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        style={{ pathLength }}
+                    />
+                </svg>
+            </div>
+
+            <div className="container mx-auto px-4 md:px-8 relative z-10 flex flex-col gap-32 md:gap-48">
+                {/* 1. Typography and Intro Section */}
+                <div className="flex flex-col relative w-full pt-12 md:pt-24">
+                    {/* Massive Typography matching reference */}
+                    <motion.h2
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="text-[13vw] md:text-[8.5vw] font-medium tracking-tighter leading-[0.9] text-black mix-blend-difference z-20"
+                    >
+                        Beyond Visions<br />
+                        Within Reach
+                    </motion.h2>
+
+                    {/* Paragraph and CTA placed to the right */}
+                    <div className="mt-16 md:mt-24 self-end md:w-[45%] lg:w-[40%] flex flex-col items-start gap-12 z-20">
                         <motion.p
+                            initial={{ opacity: 0, x: 30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            className="text-lg md:text-xl text-gray-800 font-normal leading-[1.6]"
+                        >
+                            Lusion is a digital production studio that brings your ideas to life
+                            through visually captivating designs and interactive experiences.
+                            With our talented team, we push the boundaries by solving
+                            complex problems, delivering tailored solutions that exceed
+                            expectations and engage audiences.
+                        </motion.p>
+
+                        <motion.button
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            viewport={{ once: true }}
-                            className="text-xl md:text-2xl text-gray-500 font-light leading-relaxed mb-12"
+                            viewport={{ once: true, margin: "-100px" }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="flex items-center gap-3 px-8 py-4 bg-white hover:bg-black hover:text-white transition-all duration-300 rounded-[30px] text-xs font-bold tracking-widest uppercase shadow-sm"
                         >
-                            Traditional agencies charge for time. We charge for value. We align our engineering engine with your business goals, ensuring every line of code contributes to your unit economics.
-                        </motion.p>
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3 }}
-                            viewport={{ once: true }}
-                            className="text-xl md:text-2xl text-gray-500 font-light leading-relaxed italic"
-                        >
-                            Founded on the belief that AI should be at the core of new businesses, we provide the elite technical infrastructure founders need to compete globally.
-                        </motion.p>
+                            <span className="w-1.5 h-1.5 rounded-full bg-black group-hover:bg-white transition-colors"></span> ABOUT US
+                        </motion.button>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-black/5 border border-black/5 rounded-[40px] overflow-hidden">
-                    {values.map((value, index) => (
-                        <motion.div
-                            key={value.title}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                            className="group p-12 md:p-20 bg-background hover:bg-black/[0.02] transition-colors duration-500"
-                        >
-                            <h3 className="text-2xl md:text-3xl font-bold mb-8 tracking-super-tight text-black uppercase italic">
-                                {value.title}
-                            </h3>
-                            <p className="text-gray-400 text-lg leading-relaxed font-light group-hover:text-black transition-colors duration-500 italic">
-                                {value.description}
-                            </p>
-                        </motion.div>
-                    ))}
+                {/* 2. Floating Video Block (Left Aligned) */}
+                <div className="w-full flex justify-start">
+                    <motion.div
+                        initial={{ opacity: 0, y: 50, rotateZ: -2 }}
+                        whileInView={{ opacity: 1, y: 0, rotateZ: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="w-full md:w-[60%] lg:w-[45%] aspect-[4/3] rounded-[30px] md:rounded-[40px] overflow-hidden relative shadow-2xl z-20"
+                    >
+                        {/* Blue tint overlay matching reference */}
+                        <div className="absolute inset-0 bg-[#4151FF]/40 mix-blend-overlay z-10 pointer-events-none"></div>
+                        <div className="absolute inset-0 bg-[#4151FF]/20 mix-blend-color z-10 pointer-events-none"></div>
+
+                        <video
+                            src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-network-connections-18961-large.mp4"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="absolute inset-0 w-full h-full object-cover"
+                        />
+                    </motion.div>
                 </div>
+
+                {/* 3. Distorted/Skewed Video Block (Right Aligned) */}
+                <div className="w-full flex justify-end mt-12 md:mt-24" style={{ perspective: "1000px" }}>
+                    <motion.div
+                        initial={{ opacity: 0, rotateY: 25, rotateZ: -6, scale: 0.9 }}
+                        whileInView={{ opacity: 1, rotateY: 15, rotateZ: -3, scale: 1 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="w-full md:w-[75%] lg:w-[65%] aspect-[16/9] md:aspect-[21/9] rounded-[40px] overflow-hidden relative shadow-2xl z-20 origin-right transition-transform duration-1000 ease-out"
+                        style={{ transformStyle: 'preserve-3d' }}
+                    >
+                        <div className="absolute inset-0 bg-[#4151FF]/30 mix-blend-overlay z-10 pointer-events-none"></div>
+
+                        <video
+                            src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-sky-in-a-video-32627-large.mp4"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="absolute inset-0 w-full h-full object-cover origin-center"
+                        />
+                    </motion.div>
+                </div>
+            </div>
+
+            {/* 4. Massive Full-Width Player Block at bottom */}
+            <div className="w-full px-4 md:px-8 pb-8 pt-24 md:pt-48 relative z-20">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95, y: 40 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    className="w-full h-[60vh] md:h-[80vh] rounded-[40px] md:rounded-[60px] overflow-hidden relative flex items-center justify-center shadow-2xl group cursor-pointer"
+                >
+                    <video
+                        src="https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors duration-500 z-10"></div>
+
+                    {/* Clean play button replacing PLAY REEL text */}
+                    <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="relative z-20 w-24 h-24 md:w-36 md:h-36 bg-white shadow-[0_10px_40px_rgba(0,0,0,0.15)] backdrop-blur-md rounded-full flex items-center justify-center"
+                    >
+                        <svg className="w-8 h-8 md:w-12 md:h-12 text-black ml-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    </motion.div>
+                </motion.div>
             </div>
         </section>
     );

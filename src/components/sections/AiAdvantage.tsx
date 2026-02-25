@@ -6,22 +6,22 @@ import { Bot, MessageSquare, Megaphone, Settings } from "lucide-react";
 
 const advantages = [
     {
-        title: "CUSTOM AI AGENTS",
+        title: "Custom AI Agents",
         description: "Autonomous workers integrated into your core business logic.",
         icon: Bot,
     },
     {
-        title: "ACTION CHATBOTS",
+        title: "Action Chatbots",
         description: "Conversational interfaces that actually perform transactions.",
         icon: MessageSquare,
     },
     {
-        title: "GEN-AI MARKETING",
+        title: "Gen-AI Marketing",
         description: "Automated content engines that scale with your brand voice.",
         icon: Megaphone,
     },
     {
-        title: "INTERNAL TOOLING",
+        title: "Internal Tooling",
         description: "AI-powered dashboards for extreme operational efficiency.",
         icon: Settings,
     },
@@ -29,42 +29,50 @@ const advantages = [
 
 export default function AiAdvantage() {
     return (
-        <section className="py-40 bg-background relative overflow-hidden">
+        <section className="py-24 md:py-48 bg-white relative overflow-hidden font-sans">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row items-end justify-between gap-12 mb-32">
-                    <div className="max-w-2xl">
+                    <div className="max-w-3xl">
                         <motion.h2
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            className="text-6xl md:text-8xl font-bold tracking-super-tight text-black leading-[0.9] uppercase"
+                            viewport={{ once: true }}
+                            className="text-[10vw] md:text-[6.5vw] font-medium tracking-tighter text-black leading-[0.85] uppercase"
                         >
                             INTELLIGENCE AS <br />
                             <span className="stroke-text">A CORE</span> ENGINE.
                         </motion.h2>
                     </div>
                     <div className="lg:w-1/3">
-                        <p className="text-xl text-gray-400 font-light leading-relaxed border-l border-black/10 pl-8">
+                        <motion.p
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                            className="text-xl text-gray-400 font-light leading-relaxed border-l border-black/10 pl-8"
+                        >
                             Deep artificial intelligence systems built into real products—not just wrappers around an API.
-                        </p>
+                        </motion.p>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-black/5 border border-black/5 rounded-[40px] overflow-hidden">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {advantages.map((adv, index) => (
                         <motion.div
                             key={adv.title}
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            transition={{ delay: index * 0.1 }}
-                            className="group p-12 bg-background hover:bg-black/[0.02] transition-colors duration-500"
+                            initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+                            whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                            transition={{ delay: index * 0.1, duration: 0.8 }}
+                            viewport={{ once: true }}
+                            className="group p-10 bg-white border border-black/5 rounded-[40px] hover:border-black/10 hover:shadow-2xl hover:shadow-black/5 transition-all duration-700"
                         >
-                            <div className="w-12 h-12 rounded-2xl bg-black/[0.02] border border-black/5 flex items-center justify-center mb-12 group-hover:bg-accent group-hover:text-black transition-all duration-700">
-                                <adv.icon size={20} />
+                            <div className="w-14 h-14 rounded-2xl bg-[#f8f9fa] border border-black/5 flex items-center justify-center mb-10 group-hover:bg-black group-hover:text-white transition-all duration-700">
+                                <adv.icon size={24} strokeWidth={1.5} />
                             </div>
-                            <h3 className="text-xl font-bold mb-4 tracking-super-tight text-black uppercase italic">
+                            <h3 className="text-xl font-bold mb-4 tracking-tight text-black">
                                 {adv.title}
                             </h3>
-                            <p className="text-gray-500 font-light text-sm leading-relaxed">
+                            <p className="text-gray-400 font-light text-base leading-relaxed">
                                 {adv.description}
                             </p>
                         </motion.div>

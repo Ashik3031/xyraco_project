@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Preloader from "@/components/Preloader";
 import CustomCursor from "@/components/CustomCursor";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,11 +22,13 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${inter.className} antialiased selection:bg-accent selection:text-white`}>
-                <Preloader />
-                <CustomCursor />
-                <Header />
-                {children}
-                <Footer />
+                <SmoothScroll>
+                    <Preloader />
+                    <CustomCursor />
+                    <Header />
+                    {children}
+                    <Footer />
+                </SmoothScroll>
             </body>
         </html>
     );

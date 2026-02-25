@@ -29,7 +29,12 @@ body {
   }
 
   .stroke-text {
-    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.8);
+    color: transparent;
+  }
+
+  .stroke-text-white {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
     color: transparent;
   }
 }
