@@ -49,10 +49,10 @@ export default function AboutSection() {
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
-                        className="text-[13vw] md:text-[8.5vw] font-medium tracking-tighter leading-[0.9] text-black mix-blend-difference z-20"
+                        className="text-[13vw] md:text-[8.5vw] font-medium tracking-tight leading-[1.2] text-black mix-blend-difference z-20 [word-spacing:0.15em]"
                     >
-                        Beyond Visions<br />
-                        Within Reach
+                        <span className="block pl-12 md:pl-[15%]">Building What</span>
+                        <span className="block mt-4 md:mt-6">Becomes <span className="stroke-text">Real</span></span>
                     </motion.h2>
 
                     {/* Paragraph and CTA placed to the right */}
@@ -63,7 +63,7 @@ export default function AboutSection() {
                             viewport={{ once: true, margin: "-100px" }}
                             className="text-lg md:text-xl text-gray-800 font-normal leading-[1.6]"
                         >
-                            Lusion is a digital production studio that brings your ideas to life
+                            Xyraco is a digital production studio that brings your ideas to life
                             through visually captivating designs and interactive experiences.
                             With our talented team, we push the boundaries by solving
                             complex problems, delivering tailored solutions that exceed

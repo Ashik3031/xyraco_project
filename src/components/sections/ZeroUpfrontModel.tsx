@@ -27,10 +27,10 @@ export default function ZeroUpfrontModel() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.1 }}
-                            className="text-[12vw] md:text-[7vw] lg:text-[6vw] font-medium tracking-tighter text-black leading-[0.9] uppercase mb-10"
+                            className="text-[12vw] md:text-[7vw] lg:text-[6vw] font-medium tracking-tighter text-black leading-[0.9] text-black mb-10"
                         >
                             BUILD FIRST. <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-black/40 to-black/10">PAY LATER.</span>
+                            PAY <span className="stroke-text uppercase tracking-normal">LATER.</span>
                         </motion.h2>
 
                         <motion.p
