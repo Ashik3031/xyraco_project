@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import LazyVideo from "@/components/LazyVideo";
 
 export default function ZeroUpfrontModel() {
     return (
@@ -107,16 +108,14 @@ export default function ZeroUpfrontModel() {
                                     className="flex flex-col items-center"
                                 >
                                     <div className="w-40 h-40 md:w-64 md:h-64 rounded-[40px] overflow-hidden bg-gray-50 flex items-center justify-center border border-black/5 shadow-inner mb-8 relative group/video">
-                                        <video
+                                        <LazyVideo
                                             autoPlay
                                             loop
                                             muted
                                             playsInline
                                             className="w-full h-full object-cover opacity-80 mix-blend-multiply transition-all duration-700 group-hover/video:opacity-100 group-hover/video:scale-105"
-                                        >
-                                            <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-minimalist-business-background-42407-large.mp4" type="video/mp4" />
-                                            Your browser does not support the video tag.
-                                        </video>
+                                            src="https://assets.mixkit.co/videos/preview/mixkit-abstract-minimalist-business-background-42407-large.mp4"
+                                        />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover/video:opacity-100 transition-opacity duration-500" />
                                     </div>
                                     <div className="space-y-1">

@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import LazyVideo from "@/components/LazyVideo";
 
 export default function AboutSection() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -94,7 +95,7 @@ export default function AboutSection() {
                         <div className="absolute inset-0 bg-[#4151FF]/40 mix-blend-overlay z-10 pointer-events-none"></div>
                         <div className="absolute inset-0 bg-[#4151FF]/20 mix-blend-color z-10 pointer-events-none"></div>
 
-                        <video
+                        <LazyVideo
                             src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-network-connections-18961-large.mp4"
                             autoPlay
                             loop
@@ -116,7 +117,7 @@ export default function AboutSection() {
                     >
                         <div className="absolute inset-0 bg-[#4151FF]/30 mix-blend-overlay z-10 pointer-events-none"></div>
 
-                        <video
+                        <LazyVideo
                             src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-sky-in-a-video-32627-large.mp4"
                             autoPlay
                             loop
@@ -136,7 +137,7 @@ export default function AboutSection() {
                     viewport={{ once: true, margin: "-50px" }}
                     className="w-full h-[60vh] md:h-[80vh] rounded-[40px] md:rounded-[60px] overflow-hidden relative flex items-center justify-center shadow-2xl group cursor-pointer"
                 >
-                    <video
+                    <LazyVideo
                         src="https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4"
                         autoPlay
                         loop
