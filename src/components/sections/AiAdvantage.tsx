@@ -7,22 +7,22 @@ import { Bot, MessageSquare, Megaphone, Settings } from "lucide-react";
 const advantages = [
     {
         title: "Custom AI Agents",
-        description: "Autonomous workers integrated into your core business logic.",
+        description: "Action-taking agents that automate operations, sales, and internal workflows.",
         icon: Bot,
     },
     {
-        title: "Action Chatbots",
-        description: "Conversational interfaces that actually perform transactions.",
+        title: "Intelligent Chatbots",
+        description: "CRM-connected, data-aware interfaces that perform business actions.",
         icon: MessageSquare,
     },
     {
-        title: "Gen-AI Marketing",
-        description: "Automated content engines that scale with your brand voice.",
+        title: "Gen-AI Media",
+        description: "Automated content and marketing assets at scale with brand consistency.",
         icon: Megaphone,
     },
     {
-        title: "Internal Tooling",
-        description: "AI-powered dashboards for extreme operational efficiency.",
+        title: "AI Internal Tools",
+        description: "Accelerated MVP building, research, and testing via custom AI systems.",
         icon: Settings,
     },
 ];

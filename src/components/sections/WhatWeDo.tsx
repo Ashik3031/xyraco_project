@@ -7,42 +7,34 @@ import { motion, useScroll, useSpring } from "framer-motion";
 const services = [
     {
         title: "Product Strategy",
-        description: "Idea validation, market positioning, and roadmap architecture.",
+        description: "Strategy before code: problem definition, user research, and goal alignment.",
         icon: Search,
         image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200",
-        bgColor: "bg-[#E5D5C5]", // Beige
+        bgColor: "bg-[#E5D5C5]",
         textColor: "text-black",
     },
     {
-        title: "Elite Design",
-        description: "High-end UI/UX that prioritizes conversion and premium brand feel.",
-        icon: PenTool,
-        image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200",
-        bgColor: "bg-[#B8C8BE]", // Sage
-        textColor: "text-black",
-    },
-    {
-        title: "AI Engineering",
-        description: "Deep GenAI, autonomous agents, and scalable backend engines.",
+        title: "AI Advantage",
+        description: "Action-taking AI agents and intelligent systems that automate workflows.",
         icon: Code,
         image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1200",
-        bgColor: "bg-[#0A0A0A]", // Vanta
+        bgColor: "bg-[#0A0A0A]",
         textColor: "text-white",
     },
     {
-        title: "Growth Loops",
-        description: "Go-to-market strategy and automated user acquisition engines.",
+        title: "Engineering & Build",
+        description: "Reliable, scalable, and production-ready full-stack systems.",
         icon: Zap,
-        image: "https://images.unsplash.com/photo-1543286386-713bdd54867e?auto=format&fit=crop&q=80&w=1200",
-        bgColor: "bg-[#F0EEEB]", // Bone
+        image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200",
+        bgColor: "bg-[#B8C8BE]",
         textColor: "text-black",
     },
     {
-        title: "Data Intelligence",
-        description: "Unit economics optimization and predictive analytics.",
+        title: "Growth Systems",
+        description: "Strategic GTM planning and automated user acquisition engines.",
         icon: BarChart3,
-        image: "https://images.unsplash.com/photo-1551288049-bbdac8a28a1e?auto=format&fit=crop&q=80&w=1200",
-        bgColor: "bg-[#EFEFEF]", // Charcoal
+        image: "https://images.unsplash.com/photo-1543286386-713bdd54867e?auto=format&fit=crop&q=80&w=1200",
+        bgColor: "bg-[#F0EEEB]",
         textColor: "text-black",
     },
 ];

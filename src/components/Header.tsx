@@ -20,33 +20,33 @@ export default function Header() {
     }, []);
 
     const navItems = [
+        { name: "About", href: "/about" },
         { name: "Services", href: "/services" },
         { name: "AI Advantage", href: "/ai" },
-        { name: "Products", href: "/products" },
         { name: "Apply", href: "/apply" },
     ];
 
     return (
         <>
             <header
-                className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ${scrolled ? "py-6 bg-background/80 backdrop-blur-xl" : "py-12 bg-transparent"
+                className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 mix-blend-difference ${scrolled ? "py-6" : "py-12"
                     }`}
             >
                 <div className="container mx-auto px-10 flex items-center justify-between">
                     <Link href="/" className="group flex items-center gap-1">
-                        <span className="text-xl font-bold tracking-[0.2em] text-[#f9faf8]">XYRACO</span>
+                        <span className="text-xl font-bold tracking-[0.2em] text-white">XYRACO</span>
                     </Link>
 
                     <div className="flex items-center gap-4">
                         <Link
                             href="/apply"
-                            className="px-6 py-2.5 rounded-full bg-black text-white text-[10px] uppercase tracking-widest font-bold hover:bg-accent hover:text-black transition-all duration-500 hidden sm:block"
+                            className="px-6 py-2.5 rounded-full bg-white text-black text-[10px] uppercase tracking-widest font-bold hover:scale-105 transition-all duration-500 hidden sm:block"
                         >
                             Let&apos;s Talk •
                         </Link>
                         <button
                             onClick={() => setIsOpen(true)}
-                            className="px-6 py-2.5 rounded-full bg-black/5 text-black text-[10px] uppercase tracking-widest font-bold hover:bg-black hover:text-white transition-all duration-500"
+                            className="px-6 py-2.5 rounded-full text-white text-[10px] uppercase tracking-widest font-bold hover:opacity-70 transition-all duration-500"
                         >
                             Menu ••
                         </button>

@@ -44,9 +44,9 @@ export default function ZeroUpfrontModel() {
 
                         <div className="grid sm:grid-cols-1 gap-8">
                             {[
-                                { title: "Risk Sharing", desc: "Equity or revenue share models based on milestones." },
-                                { title: "Growth Aligned", desc: "We only win when your business scales." },
-                                { title: "Performance Driven", desc: "Development costs tied directly to success." }
+                                { title: "Startup Co-Building", desc: "We co-build startups with founders, often with zero upfront costs." },
+                                { title: "Risk-Sharing Model", desc: "Equity, revenue sharing, or deferred payments to align interests." },
+                                { title: "Founder Partnership", desc: "Long-term involvement through MVP launch and first revenue." }
                             ].map((item, i) => (
                                 <motion.div
                                     key={item.title}

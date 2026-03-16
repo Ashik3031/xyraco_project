@@ -63,11 +63,9 @@ export default function AboutSection() {
                             viewport={{ once: true, margin: "-100px" }}
                             className="text-lg md:text-xl text-gray-800 font-normal leading-[1.6]"
                         >
-                            Xyraco is a digital production studio that brings your ideas to life
-                            through visually captivating designs and interactive experiences.
-                            With our talented team, we push the boundaries by solving
-                            complex problems, delivering tailored solutions that exceed
-                            expectations and engage audiences.
+                            XYRACO is an AI-first startup co-builder that shapes products before writing code.
+                            As strategic partners, we align our technical engine with your business goals
+                            to deliver measurable growth and category-defining innovation.
                         </motion.p>
 
                         <motion.button

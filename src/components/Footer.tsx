@@ -2,9 +2,13 @@
 
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+    const pathname = usePathname();
     const currentYear = new Date().getFullYear();
+
+    if (pathname === "/services") return null;
 
     const companyLinks = [
         { name: "How It Works", href: "/how-it-works" },

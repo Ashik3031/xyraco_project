@@ -50,7 +50,7 @@ export default function Hero() {
                             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
                             className="text-2xl md:text-3xl lg:text-4xl text-[#f9faf8] font-light leading-[1.1] tracking-tight max-w-[500px]"
                         >
-                            We build brands create digital experiences that connect with their audience
+                            We build businesses and create elite technical infrastructure that scales globally
                         </motion.p>
                     </div>
                 </div>
