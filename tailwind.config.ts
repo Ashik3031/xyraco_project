@@ -12,10 +12,12 @@ const config: Config = {
             colors: {
                 background: "var(--background)",
                 foreground: "var(--foreground)",
-                vanta: "#050505",
+                vanta: "#0a0a0a",
+                "premium-white": "#f9faf8",
+                "brand-green": "#00ff9d",
                 paper: "#F8F8F8",
                 accent: {
-                    DEFAULT: "#00E5FF",
+                    DEFAULT: "#fd551d",
                     purple: "#9D00FF",
                 },
                 glass: "rgba(0, 0, 0, 0.03)",

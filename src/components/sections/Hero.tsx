@@ -2,79 +2,96 @@
 
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 
-// Dynamically import HeroScene to avoid SSR issues with Three.js
-const HeroScene = dynamic(() => import("../HeroScene"), {
+// Dynamically import HexagonFloorScene to avoid SSR issues with Three.js
+const HexagonFloorScene = dynamic(() => import("../HexagonFloorScene"), {
     ssr: false,
-    loading: () => null
-}) as React.ComponentType<{ primaryColor: string }>;
+    loading: () => <div className="absolute inset-0 bg-black z-0 transition-opacity duration-1000" />
+}) as React.ComponentType;
 
 const PRIMARY_COLORS = ["#000c9f", "#7ea800", "#bc020d"];
 
 export default function Hero() {
     const [colorIndex, setColorIndex] = useState(0);
 
+    // Parallax values
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    // Smoothing the mouse movement
+    const springConfig = { damping: 25, stiffness: 150 };
+    const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), springConfig);
+    const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), springConfig);
+    const translateX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-20, 20]), springConfig);
+    const translateY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-20, 20]), springConfig);
+
     const handleHeroClick = () => {
         setColorIndex((prev) => (prev + 1) % PRIMARY_COLORS.length);
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        mouseX.set(x);
+        mouseY.set(y);
     };
 
     return (
         <section
             onClick={handleHeroClick}
-            className="relative min-h-screen flex flex-col bg-background overflow-hidden cursor-pointer active:scale-[0.99] transition-transform duration-200"
+            onMouseMove={handleMouseMove}
+            className="relative min-h-screen flex flex-col bg-black overflow-hidden cursor-pointer active:scale-[0.99] transition-transform duration-200"
         >
             {/* Three.js Canvas Layer */}
-            <HeroScene primaryColor={PRIMARY_COLORS[colorIndex]} />
+            <HexagonFloorScene />
 
             {/* Content Layer */}
-            <div className="relative z-10 flex-grow flex flex-col justify-end pb-8 px-6 sm:px-12 lg:px-20">
-                <div className="flex flex-col lg:flex-row items-end justify-between gap-12 lg:gap-24 w-full">
-                    {/* Logo/Brand Side */}
-                    <div className="w-full lg:w-1/2 mb-12 lg:mb-24">
+            <div className="relative z-10 flex-grow flex flex-col justify-center px-6 sm:px-12 lg:px-20 pt-20 pb-20">
+                <div className="max-w-[1400px] mx-auto w-full flex flex-col h-full justify-between items-center sm:items-stretch">
+                    {/* Main Heading - Staggered/Large Typography */}
+                    <div className="mt-12 md:mt-0 w-full flex justify-center">
                         <motion.h1
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 1, ease: "easeOut" }}
-                            className="text-[15vw] lg:text-[10vw] font-bold tracking-super-tight leading-[0.8] text-[#f9faf8]"
+                            style={{ rotateX, rotateY, x: translateX, y: translateY, perspective: 1000 }}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                            className="text-[11vw] sm:text-[8vw] md:text-[7.5vw] lg:text-[5.5vw] font-bold tracking-tighter leading-[1] md:leading-[1.1] text-[#f9faf8] uppercase w-full max-w-[1250px] text-center mx-auto"
                         >
-                            XYRACO
+                            <span className="block drop-shadow-2xl">What you Imagine</span>
+                            <span className="block mt-2 drop-shadow-2xl">
+                                <span className="text-transparent" style={{ WebkitTextStroke: '1px #f9faf8' }}>Should</span> exist in the <span className="text-transparent" style={{ WebkitTextStroke: '1px #f9faf8' }}>real world</span>
+                            </span>
                         </motion.h1>
                     </div>
 
-                    {/* Slogan/Description Side */}
-                    <div className="w-full lg:w-1/2 lg:pb-4">
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-                            className="text-2xl md:text-3xl lg:text-4xl text-[#f9faf8] font-light leading-[1.1] tracking-tight max-w-[500px]"
+                    {/* Subheading - Bottom Right Alignment */}
+                    <div className="flex justify-center sm:justify-end mt-12 sm:mt-24 mb-16 sm:mb-12 lg:mb-24">
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                            className="max-w-[500px] text-center sm:text-right"
                         >
-                            We build businesses and create elite technical infrastructure that scales globally
-                        </motion.p>
+                            <p className="text-base md:text-xl lg:text-2xl text-[#f9faf8] font-light leading-snug tracking-tight opacity-80 px-6 sm:px-0">
+                                We validate ideas, design products, and build MVPs that reach real users and revenue — not just launch.
+                            </p>
+                        </motion.div>
                     </div>
                 </div>
             </div>
 
-            {/* Bottom Status Bar */}
-            <div className="relative z-10 w-full px-6 sm:px-12 lg:px-20 pb-12 flex items-center justify-between border-t border-[#f9faf8]/10 pt-12">
-                <div className="flex items-center gap-12 w-full max-w-7xl mx-auto">
-                    <span className="text-xl font-light text-[#f9faf8]/20">+</span>
-                    <div className="flex-grow flex justify-center">
-                        <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#f9faf8]/40">
-                            Scroll to explore
-                        </span>
-                    </div>
-                    <span className="text-xl font-light text-[#f9faf8]/20">+</span>
-                </div>
-            </div>
-
-            {/* Additional decorative marks */}
-            <div className="absolute bottom-[20%] left-6 sm:left-12 lg:left-20">
-                <span className="text-xl font-light text-[#f9faf8]/20">+</span>
-            </div>
-            <div className="absolute bottom-[20%] right-6 sm:right-12 lg:right-20">
-                <span className="text-xl font-light text-[#f9faf8]/20">+</span>
+            {/* Bottom Scroll Indicator */}
+            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
+                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#f9faf8]/40">
+                    Scroll
+                </span>
+                <motion.div 
+                    animate={{ y: [0, 8, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="w-[1.5px] h-10 bg-[#fd551d]"
+                />
             </div>
         </section>
     );

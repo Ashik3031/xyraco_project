@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Preloader from "@/components/Preloader";
 import CustomCursor from "@/components/CustomCursor";
 import SmoothScroll from "@/components/SmoothScroll";
+import PageTransition from "@/components/PageTransition";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,9 @@ export default function RootLayout({
                     <Preloader />
                     <CustomCursor />
                     <Header />
-                    {children}
+                    <PageTransition>
+                        {children}
+                    </PageTransition>
                     <Footer />
                 </SmoothScroll>
             </body>

@@ -29,7 +29,7 @@ const advantages = [
 
 export default function AiAdvantage() {
     return (
-        <section className="py-24 md:py-48 bg-white relative overflow-hidden font-sans">
+        <section className="py-24 md:py-48 bg-premium-white relative overflow-hidden font-sans">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row items-end justify-between gap-12 mb-32">
                     <div className="max-w-3xl">
@@ -37,7 +37,7 @@ export default function AiAdvantage() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-[10vw] md:text-[6.5vw] font-medium tracking-tighter text-black leading-[0.85] uppercase"
+                            className="text-[11vw] sm:text-[9vw] md:text-[6.5vw] font-medium tracking-tighter text-black leading-[1] md:leading-[0.85] uppercase"
                         >
                             INTELLIGENCE AS <br />
                             <span className="stroke-text">A CORE</span> ENGINE.

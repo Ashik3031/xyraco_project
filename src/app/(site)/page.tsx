@@ -4,7 +4,6 @@ import WhatWeDo from "@/components/sections/WhatWeDo";
 import WhoThisIsFor from "@/components/sections/WhoThisIsFor";
 import ZeroUpfrontModel from "@/components/sections/ZeroUpfrontModel";
 import AiAdvantage from "@/components/sections/AiAdvantage";
-import InternalProducts from "@/components/sections/InternalProducts";
 import GlobalReach from "@/components/sections/GlobalReach";
 import FinalCTA from "@/components/sections/FinalCTA";
 
@@ -17,7 +16,6 @@ export default function Home() {
             <WhoThisIsFor />
             <ZeroUpfrontModel />
             <AiAdvantage />
-            <InternalProducts />
             <GlobalReach />
             <FinalCTA />
         </main>

@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useRef } from "react";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import LazyVideo from "@/components/LazyVideo";
+import LazyVideo from "@/components/LazyVideo"; // still used by the bottom player block
 
 export default function AboutSection() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -15,7 +16,7 @@ export default function AboutSection() {
     const pathLength = useTransform(scrollYProgress, [0, 0.9], [0, 1]);
 
     return (
-        <section ref={containerRef} className="py-24 md:py-40 bg-[#f4f5f9] relative overflow-hidden text-black z-10 font-sans">
+        <section ref={containerRef} className="py-6 md:py-12 bg-premium-white relative overflow-hidden text-black z-10 font-sans">
             {/* SVG Continuous Curve Background */}
             <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden h-[110%] top-0">
                 <svg
@@ -31,7 +32,7 @@ export default function AboutSection() {
                            C 110 90, 120 70, 70 85 
                            C 20 100, -10 90, 50 110"
                         fill="none"
-                        stroke="#4151FF"
+                        stroke="#fd551d"
                         strokeWidth="36" // Thick, rich blue line
                         vectorEffect="non-scaling-stroke"
                         strokeLinecap="round"
@@ -41,33 +42,35 @@ export default function AboutSection() {
                 </svg>
             </div>
 
-            <div className="container mx-auto px-4 md:px-8 relative z-10 flex flex-col gap-32 md:gap-48">
+            <div className="container mx-auto px-4 md:px-8 relative z-10 flex flex-col gap-14 md:gap-20">
                 {/* 1. Typography and Intro Section */}
-                <div className="flex flex-col relative w-full pt-12 md:pt-24">
+                <div className="flex flex-col relative w-full pt-4 md:pt-6">
                     {/* Massive Typography matching reference */}
                     <motion.h2
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
-                        className="text-[13vw] md:text-[8.5vw] font-medium tracking-tight leading-[1.2] text-black mix-blend-difference z-20 [word-spacing:0.15em]"
+                        className="text-[11vw] xs:text-[12vw] sm:text-[10vw] md:text-[8.5vw] font-medium tracking-tight leading-[1] text-black mix-blend-difference z-20 [word-spacing:0.15em]"
                     >
-                        <span className="block pl-12 md:pl-[15%]">Building What</span>
-                        <span className="block mt-4 md:mt-6">Becomes <span className="stroke-text">Real</span></span>
+                        <span className="block pl-12 md:pl-[12%]">Building What</span>
+                        <span className="block">Becomes <span className="stroke-text">Real</span></span>
                     </motion.h2>
 
                     {/* Paragraph and CTA placed to the right */}
-                    <div className="mt-16 md:mt-24 self-end md:w-[45%] lg:w-[40%] flex flex-col items-start gap-12 z-20">
+                    <div className="mt-10 md:mt-12 self-end w-full md:w-[55%] lg:w-[40%] flex flex-col items-start gap-8 z-20">
                         <motion.p
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             className="text-lg md:text-xl text-gray-800 font-normal leading-[1.6]"
                         >
-                            XYRACO is an AI-first startup co-builder that shapes products before writing code.
-                            As strategic partners, we align our technical engine with your business goals
-                            to deliver measurable growth and category-defining innovation.
+                            XYRACO is a startup co-building company focused on turning ideas
+                            into real, functional businesses. We work as partners — aligned with
+                            outcomes, grounded in clarity, and committed to building things that
+                            actually last.
                         </motion.p>
 
+                        <Link href="/about">
                         <motion.button
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -78,6 +81,7 @@ export default function AboutSection() {
                         >
                             <span className="w-1.5 h-1.5 rounded-full bg-black group-hover:bg-white transition-colors"></span> ABOUT US
                         </motion.button>
+                        </Link>
                     </div>
                 </div>
 
@@ -89,23 +93,18 @@ export default function AboutSection() {
                         viewport={{ once: true, margin: "-100px" }}
                         className="w-full md:w-[60%] lg:w-[45%] aspect-[4/3] rounded-[30px] md:rounded-[40px] overflow-hidden relative shadow-2xl z-20"
                     >
-                        {/* Blue tint overlay matching reference */}
-                        <div className="absolute inset-0 bg-[#4151FF]/40 mix-blend-overlay z-10 pointer-events-none"></div>
-                        <div className="absolute inset-0 bg-[#4151FF]/20 mix-blend-color z-10 pointer-events-none"></div>
 
-                        <LazyVideo
-                            src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-network-connections-18961-large.mp4"
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
+
+                        <img
+                            src="https://res.cloudinary.com/dugtxybef/image/upload/v1774767356/ChatGPT_Image_Mar_29_2026_12_27_47_PM_e1ehu8.png"
+                            alt="About floating"
                             className="absolute inset-0 w-full h-full object-cover"
                         />
                     </motion.div>
                 </div>
 
                 {/* 3. Distorted/Skewed Video Block (Right Aligned) */}
-                <div className="w-full flex justify-end mt-12 md:mt-24" style={{ perspective: "1000px" }}>
+                <div className="w-full flex justify-end mt-4 md:mt-8" style={{ perspective: "1000px" }}>
                     <motion.div
                         initial={{ opacity: 0, rotateY: 25, rotateZ: -6, scale: 0.9 }}
                         whileInView={{ opacity: 1, rotateY: 15, rotateZ: -3, scale: 1 }}
@@ -113,14 +112,11 @@ export default function AboutSection() {
                         className="w-full md:w-[75%] lg:w-[65%] aspect-[16/9] md:aspect-[21/9] rounded-[40px] overflow-hidden relative shadow-2xl z-20 origin-right transition-transform duration-1000 ease-out"
                         style={{ transformStyle: 'preserve-3d' }}
                     >
-                        <div className="absolute inset-0 bg-[#4151FF]/30 mix-blend-overlay z-10 pointer-events-none"></div>
 
-                        <LazyVideo
-                            src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-sky-in-a-video-32627-large.mp4"
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
+
+                        <img
+                            src="https://res.cloudinary.com/dugtxybef/image/upload/v1774765443/ChatGPT_Image_Mar_29_2026_11_54_05_AM_zjvr70.png"
+                            alt="About distorted"
                             className="absolute inset-0 w-full h-full object-cover origin-center"
                         />
                     </motion.div>
@@ -128,7 +124,7 @@ export default function AboutSection() {
             </div>
 
             {/* 4. Massive Full-Width Player Block at bottom */}
-            <div className="w-full px-4 md:px-8 pb-8 pt-24 md:pt-48 relative z-20">
+            <div className="w-full px-4 md:px-8 pb-6 pt-32 md:pt-48 relative z-20">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95, y: 40 }}
                     whileInView={{ opacity: 1, scale: 1, y: 0 }}

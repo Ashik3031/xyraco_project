@@ -7,23 +7,23 @@ import { motion } from "framer-motion";
 const steps = [
     {
         step: "01",
-        title: "VALIDATION",
-        description: "We deep-dive into the problem, market size, and unit economics. Most ideas die here. We only build the ones with $100M+ potential.",
+        title: "DISCOVER",
+        description: "Clarity First. We start by understanding the idea — the problem, the market, and whether it should exist. No building without clarity.",
     },
     {
         step: "02",
-        title: "MVP ARCHITECTURE",
-        description: "Rapid engineering focused on core value. We build the functional engine, not just a pretty shell.",
+        title: "VALIDATE",
+        description: "Make It Make Sense. We test assumptions, refine direction, and ensure the idea has real potential — technically and commercially.",
     },
     {
         step: "03",
-        title: "FIRST TRACTION",
-        description: "We help you reach your first users or revenue. Our marketing engine kicks in to prove the growth loop.",
+        title: "BUILD",
+        description: "Turn It Real. Design, engineering, and AI come together to create a working product — built to function, not just launch.",
     },
     {
         step: "04",
-        title: "SCALE & PARTNERSHIP",
-        description: "Long-term engineering and strategy support. We share the risk and the reward as the business grows.",
+        title: "GROW",
+        description: "Reach & Scale. We help take the product to users, validate traction, and evolve it into something that sustains and grows.",
     },
 ];
 

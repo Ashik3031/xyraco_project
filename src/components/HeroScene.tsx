@@ -4,11 +4,14 @@ import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 import * as CANNON from "cannon-es";
 import gsap from "gsap";
+import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
+import fontData from "three/examples/fonts/helvetiker_bold.typeface.json";
 
 export default function HeroScene({ primaryColor }: { primaryColor: string }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const mouse = useRef({ x: 0, y: 0 });
-    const objectsRef = useRef<{ mesh: THREE.Mesh; body: CANNON.Body; isPrimary: boolean }[]>([]);
+    const objectsRef = useRef<{ mesh: THREE.Mesh; body: CANNON.Body; isPrimary: boolean; initialColor: number }[]>([]);
 
     useEffect(() => {
         if (!containerRef.current) return;
@@ -36,9 +39,18 @@ export default function HeroScene({ primaryColor }: { primaryColor: string }) {
         directionalLight.position.set(5, 5, 5);
         scene.add(directionalLight);
 
-        const pointLight = new THREE.PointLight(0xffffff, 1.5, 300);
+        const pointLight = new THREE.PointLight(0xffffff, 2.0, 400);
         pointLight.position.set(0, 0, 50);
         scene.add(pointLight);
+
+        const centerLight = new THREE.PointLight(0xffffff, 3.0, 200);
+        centerLight.position.set(0, 0, 20);
+        scene.add(centerLight);
+
+        // Water Effect Mouse Light
+        const mouseLight = new THREE.PointLight(0x00ffff, 0, 150); // Start off
+        scene.add(mouseLight);
+        const mouseLightRef = { current: mouseLight };
 
         // Camera Setup
         const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -52,65 +64,74 @@ export default function HeroScene({ primaryColor }: { primaryColor: string }) {
         renderer.toneMappingExposure = 1.2;
         containerRef.current.appendChild(renderer.domElement);
 
-        // --- Geometric Setup ---
-        const staticColors = [0xcecece, 0xd7c100];
-        const objects: { mesh: THREE.Mesh; body: CANNON.Body; isPrimary: boolean }[] = [];
+        const letters = ["X", "Y", "R", "A", "C", "O"];
+        const jellyColors = [
+            0xe60023, // Vibrant Red (Requested)
+            0x0033ff, // Electric Blue
+            0x00d166, // Emerald Green
+            0x7b2cbf, // Royal Purple
+            0xff9100, // Vivid Orange
+            0xff006e  // Hot Pink
+        ];
 
-        for (let i = 0; i < 45; i++) {
-            const size = Math.random() * 6 + 4;
-            const w = size, h = size, d = size;
-            const r = 1.5;
+        const objects: { mesh: THREE.Mesh; body: CANNON.Body; isPrimary: boolean; initialColor: number }[] = [];
+        const fontLoader = new FontLoader();
 
-            const shape = new THREE.Shape();
-            shape.moveTo(-w / 2 + r, -h / 2);
-            shape.lineTo(w / 2 - r, -h / 2);
-            shape.quadraticCurveTo(w / 2, -h / 2, w / 2, -h / 2 + r);
-            shape.lineTo(w / 2, h / 2 - r);
-            shape.quadraticCurveTo(w / 2, h / 2, w / 2 - r, h / 2);
-            shape.lineTo(-w / 2 + r, h / 2);
-            shape.quadraticCurveTo(-w / 2, h / 2, -w / 2, h / 2 - r);
-            shape.lineTo(-w / 2, -h / 2 + r);
-            shape.quadraticCurveTo(-w / 2, -h / 2, -w / 2 + r, -h / 2);
+        // Load font and create letters
+        const font = fontLoader.parse(fontData);
 
-            const extrudeSettings = {
-                depth: d - r * 2,
+        for (let i = 0; i < 40; i++) {
+            const char = letters[i % letters.length];
+            const size = Math.random() * 6 + 10; // Reduced size
+            const depth = 4;
+
+            const geometry = new TextGeometry(char, {
+                font: font,
+                size: size,
+                depth: depth,
+                curveSegments: 24,
                 bevelEnabled: true,
-                bevelThickness: r,
-                bevelSize: r,
+                bevelThickness: 2.0, // Thinned for smaller size
+                bevelSize: 1.0,
                 bevelOffset: 0,
-                bevelSegments: 8
-            };
-
-            const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+                bevelSegments: 12
+            });
             geometry.center();
 
-            const isPrimary = Math.random() > 0.6;
-            const colorValue = isPrimary ? primaryColor : staticColors[Math.floor(Math.random() * staticColors.length)];
+            const colorValue = jellyColors[Math.floor(Math.random() * jellyColors.length)];
 
             const material = new THREE.MeshPhysicalMaterial({
                 color: new THREE.Color(colorValue),
-                transparent: false,
+                transparent: false, // Solid
                 opacity: 1.0,
-                roughness: 0.1,
-                metalness: 0.3,
+                roughness: 0.0,
+                metalness: 0.3, // Enhanced shine for solid
                 clearcoat: 1.0,
-                clearcoatRoughness: 0.05,
+                clearcoatRoughness: 0.0,
+                transmission: 0.0, // Removed transparency
+                thickness: 0,
+                ior: 1.5,
                 reflectivity: 1.0,
             });
 
             const mesh = new THREE.Mesh(geometry, material);
 
-            // --- Calibrated Distribution ---
-            // Keep cubes primarily on-screen but spread out
-            const x = (Math.random() - 0.5) * 280;
-            const y = (Math.random() - 0.5) * 160;
-            const z = (Math.random() - 0.5) * 80;
+            // --- Weighted Centered Distribution ---
+            const isFar = Math.random() > 0.7;
+            const rangeX = isFar ? 280 : 130;
+            const rangeY = isFar ? 160 : 90;
+            const rangeZ = isFar ? 80 : 40;
 
+            const x = (Math.random() - 0.5) * rangeX;
+            const y = (Math.random() - 0.5) * rangeY;
+            const z = (Math.random() - 0.5) * rangeZ;
+
+            // Physics body - use a box that fits the letter
             const body = new CANNON.Body({
                 mass: 1,
-                shape: new CANNON.Box(new CANNON.Vec3(w / 2, h / 2, d / 2)),
+                shape: new CANNON.Box(new CANNON.Vec3(size / 2, size / 2, depth / 2)),
                 position: new CANNON.Vec3(x, y, z),
-                linearDamping: 0.85, // Increased for calmer movement
+                linearDamping: 0.85,
                 angularDamping: 0.85
             });
 
@@ -129,7 +150,7 @@ export default function HeroScene({ primaryColor }: { primaryColor: string }) {
 
             world.addBody(body);
             scene.add(mesh);
-            objects.push({ mesh, body, isPrimary });
+            objects.push({ mesh, body, isPrimary: true, initialColor: colorValue });
         }
         objectsRef.current = objects;
 
@@ -226,24 +247,38 @@ export default function HeroScene({ primaryColor }: { primaryColor: string }) {
                     body.velocity.z -= Math.sign(body.position.z) * 0.05;
                 }
 
-                // 2. Very weak restorative force to center
-                const attraction = body.position.negate().scale(0.005);
+                // 2. Strong restorative force to center
+                const attraction = body.position.negate().scale(0.012); // Slightly tuned
                 body.applyForce(attraction, body.position);
 
-                // 3. Subtle Mouse Hover Friction (Micro-movement)
-                const mouse3D = new CANNON.Vec3(mouse.current.x * 120, mouse.current.y * 75, 0);
+                // 3. Water Ripple Effect (Soft Mouse Push)
+                const mouse3D = new CANNON.Vec3(mouse.current.x * 140, mouse.current.y * 80, 0);
+
+                // Update mouse light position
+                if (k === 0) {
+                    mouseLightRef.current.position.set(mouse3D.x, mouse3D.y, 20);
+                    mouseLightRef.current.intensity = 4.0;
+                }
+
                 const dToMouse = body.position.distanceTo(mouse3D);
-                if (dToMouse < 50) {
+                if (dToMouse < 60) {
                     const pushDir = body.position.vsub(mouse3D).unit();
-                    const pushForce = (1 - dToMouse / 50) * 35; // Very small force
+                    // Softer, liquid-like push
+                    const pushForce = (1 - dToMouse / 60) * 15;
                     body.applyForce(pushDir.scale(pushForce), body.position);
                 }
 
-                // 4. Sync Mesh with Physics Body
+                // 4. Sync Mesh with Physics Body & Add Jelly Jiggle
                 mesh.position.copy(body.position as any);
                 mesh.quaternion.copy(body.quaternion as any);
 
-                // 4. Trace-like slow rotation
+                // Subtle jelly-like scale pulsation (softened)
+                const jiggleFreq = time * 0.005 + (k * 0.5);
+                const jiggleScaleX = 1 + Math.sin(jiggleFreq) * 0.07;
+                const jiggleScaleY = 1 + Math.cos(jiggleFreq * 0.8) * 0.07;
+                mesh.scale.set(jiggleScaleX, jiggleScaleY, jiggleScaleX);
+
+                // 5. Trace-like slow rotation
                 body.angularVelocity.x += Math.sin(time * 0.0005 + k) * 0.0005;
                 body.angularVelocity.y += Math.cos(time * 0.0005 + k) * 0.0005;
             });
@@ -268,20 +303,17 @@ export default function HeroScene({ primaryColor }: { primaryColor: string }) {
         };
     }, []);
 
-    // Color cycling logic
     useEffect(() => {
         if (!objectsRef.current.length) return;
-        objectsRef.current.forEach(({ mesh, isPrimary }) => {
-            if (isPrimary) {
-                const targetColor = new THREE.Color(primaryColor);
-                gsap.to((mesh.material as THREE.MeshPhysicalMaterial).color, {
-                    r: targetColor.r,
-                    g: targetColor.g,
-                    b: targetColor.b,
-                    duration: 0.8,
-                    ease: "power2.out"
-                });
-            }
+        objectsRef.current.forEach(({ mesh, initialColor }) => {
+            const targetColor = new THREE.Color(initialColor);
+            gsap.to((mesh.material as THREE.MeshPhysicalMaterial).color, {
+                r: targetColor.r,
+                g: targetColor.g,
+                b: targetColor.b,
+                duration: 0.8,
+                ease: "power2.out"
+            });
         });
     }, [primaryColor]);
 

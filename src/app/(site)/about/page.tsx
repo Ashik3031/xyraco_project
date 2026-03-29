@@ -5,19 +5,19 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 const galleryImages = [
     {
-        src: "https://images.unsplash.com/photo-1551009805-4f386d4dcbab?auto=format&fit=crop&q=80&w=1200",
+        src: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200",
         aspectRatio: "aspect-[3/4]",
         width: "w-[25vw]",
         yOffset: "0"
     },
     {
-        src: "https://images.unsplash.com/photo-1627392661853-29ecda9b8ef6?auto=format&fit=crop&q=80&w=1600",
+        src: "https://res.cloudinary.com/dugtxybef/image/upload/v1774777298/148799_zn9zh1.jpg",
         aspectRatio: "aspect-[4/3]",
         width: "w-[35vw]",
         yOffset: "translate-y-24"
     },
     {
-        src: "https://images.unsplash.com/photo-1542314831-c6a4d14d837e?auto=format&fit=crop&q=80&w=1400",
+        src: "https://res.cloudinary.com/dugtxybef/image/upload/v1774767356/ChatGPT_Image_Mar_29_2026_12_27_47_PM_e1ehu8.png",
         aspectRatio: "aspect-square",
         width: "w-[30vw]",
         yOffset: "-translate-y-12"
@@ -55,7 +55,7 @@ export default function AboutPage() {
         <main className="bg-[#fcfdfa] text-[#0a0a0a] font-sans selection:bg-accent selection:text-white">
 
             {/* Massive Hero Section with Horizontal Scroll */}
-            <section ref={containerRef} className="relative h-[300vh] bg-[#fcfdfa]">
+            <section ref={containerRef} className="relative h-[200vh] bg-[#fcfdfa]">
                 <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
 
                     {/* Centered Typography Lockup (Parallaxing down as we scroll horizontally) */}
@@ -66,9 +66,9 @@ export default function AboutPage() {
                         <h1 className="text-[12vw] md:text-[8vw] font-bold tracking-tighter uppercase leading-[0.8] mb-4">
                             XYRACO®
                             <br />
-                            <span className="text-[10vw] md:text-[7vw]">THE LOOKBACK</span>
+                            <span className="text-[10vw] md:text-[7vw]">CO-BUILDING</span>
                             <br />
-                            <span className="text-[10vw] md:text-[7vw] font-serif italic">(BO®S/2026)</span>
+                            <span className="text-[10vw] md:text-[7vw] font-serif italic">REAL BUSINESSES</span>
                         </h1>
                     </motion.div>
 
@@ -117,11 +117,12 @@ export default function AboutPage() {
             </section>
 
             {/* Minimal Editorial Content Section */}
-            <section className="py-64 bg-[#fcfdfa] relative z-20 border-t border-black/10">
+            {/* Minimal Editorial Content Section */}
+            <section className="py-24 md:py-32 bg-[#fcfdfa] relative z-20 border-t border-black/10">
                 <div className="container mx-auto px-6 md:px-12 lg:px-24">
 
                     {/* Manifesto / Statement */}
-                    <div className="flex flex-col lg:flex-row gap-16 md:gap-32 mb-64">
+                    <div className="flex flex-col lg:flex-row gap-16 md:gap-32 mb-32 md:mb-48">
                         <div className="lg:w-2/5 flex flex-col justify-between">
                             <motion.div
                                 initial={{ opacity: 0 }}
@@ -130,6 +131,19 @@ export default function AboutPage() {
                                 transition={{ duration: 1 }}
                             >
                                 <p className="text-[10px] uppercase font-bold tracking-[0.4em] text-black/40 mb-8">Manifesto</p>
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 1.2, ease: "easeOut" }}
+                                    className="hidden lg:block w-full max-w-[280px] aspect-[1/1] rounded-2xl overflow-hidden mt-12 grayscale hover:grayscale-0 transition-all duration-700 shadow-sm"
+                                >
+                                    <img
+                                        src="https://res.cloudinary.com/dugtxybef/image/upload/v1774777302/2750_x0rddy.jpg"
+                                        alt="Manifesto detail"
+                                        className="w-full h-full object-cover"
+                                    />
+                                </motion.div>
                             </motion.div>
                         </div>
 
@@ -141,8 +155,8 @@ export default function AboutPage() {
                                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                                 className="text-3xl md:text-5xl lg:text-6xl font-normal text-black tracking-tight leading-[1.2] pb-12 border-b border-black/10"
                             >
-                                WE ARE NOT AN AGENCY. <br />
-                                <span className="font-serif italic text-black/60">We are business builders.</span>
+                                NOT A SERVICE PROVIDER. <br />
+                                <span className="font-serif italic text-black/60">We co-build businesses.</span>
                             </motion.h2>
 
                             <motion.div
@@ -153,10 +167,10 @@ export default function AboutPage() {
                                 className="mt-16 space-y-12"
                             >
                                 <p className="text-xl md:text-2xl text-gray-800 font-light leading-relaxed">
-                                    Traditional agencies focus on feature delivery. XYRACO focuses on business outcomes. As startup advisors and technical architects, we help founders shape the right product <span className="italic font-serif">before</span> writing a single line of code.
+                                    XYRACO works with founders, teams, and organizations to move from concept to execution — shaping ideas, validating them, and building products that can operate in the real world.
                                 </p>
                                 <p className="text-xl md:text-2xl text-gray-500 font-light leading-relaxed">
-                                    By combining deep R&D exploration with elite engineering, we provide the technical and strategic engine founders need to validate ideas and scale products globally.
+                                    Before anything is built, we focus on understanding the problem, the market, and the viability of the idea. From there, we design and develop systems that are not only technically sound, but <span className="italic font-serif">commercially meaningful</span>.
                                 </p>
                             </motion.div>
                         </div>
@@ -176,16 +190,16 @@ export default function AboutPage() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8 lg:gap-24 px-4">
                             {[
                                 {
-                                    title: "FOUNDER PARTNERSHIP",
-                                    description: "We work as a long-term partner, staying involved through MVP launch and revenue. Your success is our primary metric.",
+                                    title: "PARTNER, NOT VENDOR",
+                                    description: "We don't deliver isolated features. We engage as long-term partners aligned with outcomes, focused on building something that actually works as a business.",
                                 },
                                 {
-                                    title: "ELITE ENGINEERING",
-                                    description: "We build production-ready systems, not demos. Our full-stack engineering focus ensures reliability, scalability, and maintainability.",
+                                    title: "CLARITY FIRST",
+                                    description: "Before anything is built, we understand the problem, the market, and the viability. Execution follows understanding — not the other way around.",
                                 },
                                 {
-                                    title: "RISK-SHARING MODEL",
-                                    description: "Qualified ideas can be built with flexible models such as revenue sharing, profit sharing, or equity. We align our skin in the game.",
+                                    title: "SHARED SUCCESS",
+                                    description: "In selected cases, we operate on flexible models including shared success structures — investing in ideas we believe in and growing alongside them.",
                                 }
                             ].map((value, index) => (
                                 <motion.div
@@ -209,6 +223,55 @@ export default function AboutPage() {
                                 </motion.div>
                             ))}
                         </div>
+                    </div>
+                    {/* Origins Section */}
+                    <div className="flex flex-col lg:flex-row gap-16 md:gap-32 mt-32 mb-32 items-center">
+                        <div className="lg:w-2/5">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                                className="aspect-[4/5] bg-gray-50 rounded-[40px] overflow-hidden"
+                            >
+                                <img
+                                    src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200"
+                                    alt="XYRACO Team"
+                                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                                />
+                            </motion.div>
+                        </div>
+                        <div className="lg:w-3/5 space-y-12">
+                            <p className="text-[10px] uppercase font-bold tracking-[0.4em] text-black/40">Origins</p>
+                            <h3 className="text-3xl md:text-5xl lg:text-5xl font-normal leading-tight tracking-tight">
+                                Founded by three professionals with experience across diverse landscapes — XYRACO brings together <span className="font-serif italic text-black/60">product, engineering, and systems thinking</span>.
+                            </h3>
+                            <p className="text-xl md:text-2xl text-gray-500 font-light leading-relaxed max-w-2xl">
+                                Our disciplines shape how we approach every build — focusing on technical rigor while remaining adaptable to the evolving needs of the founders we partner with.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Belief Section */}
+                    <div className="flex flex-col items-center justify-center py-32 border-t border-black/10 text-center space-y-12">
+                         <motion.p
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            className="text-[10px] uppercase font-bold tracking-[0.6em] text-black/30"
+                        >
+                            The Core Belief
+                        </motion.p>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                            className="text-[8vw] md:text-[6vw] font-bold uppercase leading-[0.9] tracking-super-tight text-black max-w-5xl"
+                        >
+                            What gets built should not just launch — <br />
+                            <span className="font-serif italic text-black/30 lowercase">it should last.</span>
+                        </motion.h2>
                     </div>
                 </div>
             </section>

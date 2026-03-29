@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #c2cabb;
-  --foreground: #050505;
+  --background: #f9faf8;
+  --foreground: #0a0a0a;
 }
 
 body {
@@ -54,16 +54,16 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
+  background: #fd551d;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.4);
+  background: #e44d1a;
 }
 
 /* For Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  scrollbar-color: #fd551d transparent;
 }

@@ -6,7 +6,7 @@ import LazyVideo from "@/components/LazyVideo";
 
 export default function ZeroUpfrontModel() {
     return (
-        <section className="py-32 md:py-56 bg-[#fcfcfc] relative overflow-hidden font-sans">
+        <section className="py-32 md:py-56 bg-vanta relative overflow-hidden font-sans">
             {/* Background Decorative Elements */}
             <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-blue-50/50 to-transparent blur-3xl -z-10" />
             <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-gradient-to-tr from-gray-100/50 to-transparent blur-3xl -z-10" />
@@ -18,26 +18,26 @@ export default function ZeroUpfrontModel() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
-                            className="inline-block px-4 py-1.5 mb-8 rounded-full bg-black/[0.03] border border-black/[0.08]"
+                            className="inline-block px-4 py-1.5 mb-8 rounded-full bg-white/[0.03] border border-white/[0.08]"
                         >
-                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-black">Performance First</span>
+                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/80">Performance First</span>
                         </motion.div>
 
                         <motion.h2
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.1 }}
-                            className="text-[12vw] md:text-[7vw] lg:text-[6vw] font-medium tracking-tighter text-black leading-[0.9] text-black mb-10"
+                            className="text-[11vw] sm:text-[9vw] md:text-[7vw] lg:text-[6vw] font-medium tracking-tighter text-white leading-[1] md:leading-[0.9] mb-10"
                         >
                             BUILD FIRST. <br />
-                            PAY <span className="stroke-text uppercase tracking-normal">LATER.</span>
+                            PAY <span className="stroke-text-white uppercase tracking-normal">LATER.</span>
                         </motion.h2>
 
                         <motion.p
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             transition={{ duration: 1, delay: 0.3 }}
-                            className="text-lg md:text-xl text-gray-500 font-light leading-relaxed mb-16 max-w-xl"
+                            className="text-lg md:text-xl text-white/50 font-light leading-relaxed mb-16 max-w-xl"
                         >
                             We eliminate the upfront barrier by sharing risk. Our partners succeed when the product succeeds. It&apos;s a pure performance-driven partnership.
                         </motion.p>
@@ -53,11 +53,11 @@ export default function ZeroUpfrontModel() {
                                     initial={{ opacity: 0, x: -20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     transition={{ duration: 0.5, delay: 0.4 + (i * 0.1) }}
-                                    className="group relative pl-6 border-l border-black/5"
+                                    className="group relative pl-6 border-l border-white/10"
                                 >
-                                    <h4 className="text-sm font-bold text-black mb-1 uppercase tracking-widest">{item.title}</h4>
-                                    <p className="text-gray-400 font-light text-sm leading-relaxed">{item.desc}</p>
-                                    <div className="absolute left-[-1px] top-0 h-0 w-[1px] bg-black transition-all duration-500 group-hover:h-full" />
+                                    <h4 className="text-sm font-bold text-white mb-1 uppercase tracking-widest">{item.title}</h4>
+                                    <p className="text-white/40 font-light text-sm leading-relaxed">{item.desc}</p>
+                                    <div className="absolute left-[-1px] top-0 h-0 w-[1px] bg-accent transition-all duration-500 group-hover:h-full" />
                                 </motion.div>
                             ))}
                         </div>
@@ -68,14 +68,14 @@ export default function ZeroUpfrontModel() {
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                            className="aspect-[4/5] md:aspect-square rounded-[40px] md:rounded-[80px] bg-white shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] border border-black/[0.03] flex items-center justify-center relative overflow-hidden group"
+                            className="aspect-[4/5] md:aspect-square rounded-[40px] md:rounded-[80px] bg-white/[0.02] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.5)] border border-white/[0.05] flex items-center justify-center relative overflow-hidden group"
                         >
                             {/* Sophisticated Growth Animation */}
                             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                                 <svg width="100%" height="100%" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <motion.path
                                         d="M100 300C100 300 150 280 180 220C210 160 250 160 300 100"
-                                        stroke="black"
+                                        stroke="#fd551d"
                                         strokeWidth="2"
                                         strokeLinecap="round"
                                         initial={{ pathLength: 0, opacity: 0 }}
@@ -86,14 +86,14 @@ export default function ZeroUpfrontModel() {
                                         cx="300"
                                         cy="100"
                                         r="6"
-                                        fill="black"
+                                        fill="#fd551d"
                                         initial={{ scale: 0 }}
                                         whileInView={{ scale: 1 }}
                                         transition={{ type: "spring", stiffness: 200, delay: 2.2 }}
                                     />
                                     {/* Decorative Grid */}
                                     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="black" strokeWidth="0.5" strokeOpacity="0.03" />
+                                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5" strokeOpacity="0.05" />
                                     </pattern>
                                     <rect width="100%" height="100%" fill="url(#grid)" />
                                 </svg>
@@ -107,7 +107,7 @@ export default function ZeroUpfrontModel() {
                                     transition={{ duration: 1, delay: 0.8 }}
                                     className="flex flex-col items-center"
                                 >
-                                    <div className="w-40 h-40 md:w-64 md:h-64 rounded-[40px] overflow-hidden bg-gray-50 flex items-center justify-center border border-black/5 shadow-inner mb-8 relative group/video">
+                                    <div className="w-40 h-40 md:w-64 md:h-64 rounded-[40px] overflow-hidden bg-white/5 flex items-center justify-center border border-white/10 shadow-inner mb-8 relative group/video">
                                         <LazyVideo
                                             autoPlay
                                             loop
@@ -123,7 +123,7 @@ export default function ZeroUpfrontModel() {
                                             initial={{ opacity: 0 }}
                                             whileInView={{ opacity: 1 }}
                                             transition={{ delay: 1.2 }}
-                                            className="text-2xl font-medium text-black tracking-tight"
+                                            className="text-2xl font-medium text-white tracking-tight"
                                         >
                                             Zero Risk.
                                         </motion.h3>
@@ -146,7 +146,7 @@ export default function ZeroUpfrontModel() {
                                 transition={{ delay: 1.6 }}
                                 className="absolute top-10 left-10 py-3 px-5 rounded-2xl bg-white/80 backdrop-blur-md border border-black/5 shadow-lg shadow-black/[0.02]"
                             >
-                                <span className="text-[10px] font-bold uppercase tracking-widest text-black/60">Stage 01</span>
+                                <span className="text-[10px] font-bold uppercase tracking-widest text-white/60">Stage 01</span>
                             </motion.div>
 
                             <motion.div
@@ -158,8 +158,8 @@ export default function ZeroUpfrontModel() {
                                 <span className="text-[10px] font-bold uppercase tracking-widest">Scaling Now</span>
                             </motion.div>
 
-                            <div className="absolute top-12 md:top-20 right-[-20px] p-5 rounded-full bg-white border border-black/5 shadow-xl shadow-black/5 rotate-12 group-hover:rotate-0 transition-transform duration-700">
-                                <span className="text-[9px] font-bold uppercase tracking-widest text-black whitespace-nowrap px-4 italic">Qualified founders only.</span>
+                            <div className="absolute top-12 md:top-20 right-[-10px] md:right-[-20px] p-4 md:p-5 rounded-full bg-accent border border-white/10 shadow-xl shadow-accent/20 rotate-12 group-hover:rotate-0 transition-transform duration-700">
+                                <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-white whitespace-nowrap px-3 md:px-4 italic">Qualified founders only.</span>
                             </div>
                         </motion.div>
                     </div>
