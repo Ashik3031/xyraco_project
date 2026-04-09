@@ -17,8 +17,19 @@ jobs:
           username: root
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd /var/www/xyraco/xyraco_project
-            git pull origin main
-            npm install
-            npm run build
-            pm2 restart xyraco
+                cd /var/www/xyraco/xyraco_project
+
+                echo "Pull latest code"
+                git pull origin main
+
+                echo "Install deps"
+                npm install
+
+                echo "Clean old build"
+                rm -rf .next
+
+                echo "Build project"
+                npm run build
+
+                echo "Restart app properly"
+                pm2 restart xyraco --update-env
