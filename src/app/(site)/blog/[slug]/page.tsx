@@ -2,8 +2,15 @@ import type { Metadata } from "next";
 import BlogDetailClient from "@/components/BlogDetailClient";
 
 export const metadata: Metadata = {
-    title: "Blog Detail | AI Startup Co-Builder",
-    description: "Deep dive into startup validation, MVP building, and AI strategies.",
+    title: "Startup Building Insights | Xyraco",
+    description: "Xyraco insights on startup validation, MVP development, AI startup building, autonomous agents, and zero-upfront co-building.",
+    keywords: [
+        "startup validation",
+        "MVP building",
+        "AI startup strategy",
+        "autonomous agents",
+        "startup co-builder",
+    ],
 };
 
 export default function BlogPostDetail({ params }: { params: { slug: string } }) {

@@ -1,8 +1,6 @@
 {
-  "/(site)/page": "app/(site)/page.js",
-  "/(site)/services/page": "app/(site)/services/page.js",
-  "/(site)/about/page": "app/(site)/about/page.js",
-  "/(site)/ai/page": "app/(site)/ai/page.js",
-  "/(site)/apply/page": "app/(site)/apply/page.js",
-  "/icon.png/route": "app/icon.png/route.js"
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/subscribe/route": "app/api/subscribe/route.js",
+  "/icon.png/route": "app/icon.png/route.js",
+  "/(site)/page": "app/(site)/page.js"
 }

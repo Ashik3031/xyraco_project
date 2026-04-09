@@ -42,7 +42,7 @@ export default function Hero() {
         <section
             onClick={handleHeroClick}
             onMouseMove={handleMouseMove}
-            className="relative min-h-screen flex flex-col bg-black overflow-hidden cursor-pointer active:scale-[0.99] transition-transform duration-200"
+            className="relative h-screen min-h-[720px] flex flex-col bg-black overflow-hidden cursor-pointer active:scale-[0.99] transition-transform duration-200"
         >
             {/* Three.js Canvas Layer */}
             <HexagonFloorScene />

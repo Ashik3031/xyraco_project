@@ -1,25 +1,51 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { 
     Mail, 
     Phone, 
     MapPin, 
     ArrowUp, 
-    Facebook, 
-    Twitter, 
     Instagram, 
     Linkedin, 
-    Github 
+    MessageCircle
 } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Footer() {
-    const currentYear = new Date().getFullYear();
+    const [subscriberEmail, setSubscriberEmail] = useState("");
+    const [subscribeStatus, setSubscribeStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [subscribeMessage, setSubscribeMessage] = useState("");
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    const handleSubscribe = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setSubscribeStatus("loading");
+        setSubscribeMessage("");
+
+        try {
+            const response = await fetch("/api/subscribe", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: subscriberEmail, recaptchaToken: "" }),
+            });
+            const data = (await response.json()) as { success: boolean; message: string };
+
+            if (!response.ok || !data.success) {
+                throw new Error(data.message || "Unable to subscribe right now.");
+            }
+
+            setSubscribeStatus("success");
+            setSubscribeMessage(data.message);
+            setSubscriberEmail("");
+        } catch (error) {
+            setSubscribeStatus("error");
+            setSubscribeMessage(error instanceof Error ? error.message : "Unable to subscribe right now.");
+        }
     };
 
     const footerSections = [
@@ -39,9 +65,9 @@ export default function Footer() {
             links: [
                 { name: "About Us", href: "/about" },
                 { name: "How We Work", href: "/how-it-works" },
-                { name: "Careers", href: "/careers" },
+                { name: "Projects", href: "/projects" },
                 { name: "Insights", href: "/blog" },
-                { name: "Contact", href: "/contact" },
+                { name: "Apply", href: "/apply" },
             ],
         },
         {
@@ -50,17 +76,15 @@ export default function Footer() {
                 { name: "Privacy Policy", href: "/legal" },
                 { name: "Terms of Use", href: "/legal" },
                 { name: "Cookie Policy", href: "/legal" },
-                { name: "Sitemap", href: "/sitemap" },
+                { name: "Sitemap", href: "/sitemap.xml" },
             ],
         },
     ];
 
     const socials = [
-        { icon: Facebook, href: "#" },
-        { icon: Twitter, href: "#" },
-        { icon: Linkedin, href: "#" },
-        { icon: Instagram, href: "#" },
-        { icon: Github, href: "#" },
+        { icon: Instagram, href: "https://www.instagram.com/xyraco.in?igsh=dnE2MnJhaW5rdjY0&utm_source=qr", label: "Instagram" },
+        { icon: Linkedin, href: "https://linkedin.com/company/xyraco", label: "LinkedIn" },
+        { icon: MessageCircle, href: "https://wa.me/919497411513", label: "WhatsApp" },
     ];
 
     return (
@@ -72,6 +96,7 @@ export default function Footer() {
                     whileHover={{ scale: 1.1, y: -5 }}
                     whileTap={{ scale: 0.9 }}
                     className="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-black shadow-lg shadow-accent/20"
+                    aria-label="Scroll to top"
                 >
                     <ArrowUp size={18} />
                 </motion.button>
@@ -80,28 +105,32 @@ export default function Footer() {
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
                     {/* Brand Section */}
-                    <div className="lg:col-span-4 max-w-xs">
+                    <div className="lg:col-span-4 max-w-sm">
                         <Link href="/" className="inline-block mb-6">
                             <span className="text-xl font-bold tracking-tighter text-accent">
                                 XYRACO
                             </span>
                         </Link>
                         <p className="text-gray-400 font-light leading-relaxed mb-8 text-xs">
-                            An architectural engineering engine dedicated to helping elite founders validate, build, and scale world-class businesses.
+                            Xyraco is an AI startup builder and startup development company for founders who need MVP development and want to build startup without funding or upfront cost.
                         </p>
                         
                         <div className="space-y-3">
-                            <div className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors cursor-pointer group">
+                            <a href="mailto:info@xyraco.com" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
                                 <Mail size={14} className="text-accent/60 group-hover:text-accent" />
                                 <span className="text-xs font-light">info@xyraco.com</span>
-                            </div>
-                            <div className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors cursor-pointer group">
+                            </a>
+                            <a href="tel:+971544692469" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
                                 <Phone size={14} className="text-accent/60 group-hover:text-accent" />
-                                <span className="text-xs font-light">+91 98765 43210</span>
-                            </div>
-                            <div className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors cursor-pointer group">
-                                <MapPin size={14} className="text-accent/60 group-hover:text-accent" />
-                                <span className="text-xs font-light">Remote-first, globally based</span>
+                                <span className="text-xs font-light">UAE: +971 54 469 2469</span>
+                            </a>
+                            <a href="https://wa.me/919497411513" target="_blank" rel="noreferrer noopener" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
+                                <MessageCircle size={14} className="text-accent/60 group-hover:text-accent" />
+                                <span className="text-xs font-light">WhatsApp: +91 94974 11513</span>
+                            </a>
+                            <div className="flex items-start gap-3 text-gray-400">
+                                <MapPin size={14} className="text-accent/60 mt-0.5 flex-shrink-0" />
+                                <span className="text-xs font-light">Tower 400, Office No: 1004, Al Soor Street, Sharjah, UAE</span>
                             </div>
                         </div>
                     </div>
@@ -139,16 +168,30 @@ export default function Footer() {
                         </p>
                     </div>
                     
-                    <div className="flex flex-col sm:flex-row w-full md:w-auto gap-3">
+                    <form onSubmit={handleSubscribe} className="flex flex-col w-full md:w-auto gap-3">
+                        <div className="flex flex-col sm:flex-row w-full md:w-auto gap-3">
                         <input 
                             type="email" 
                             placeholder="Enter your email" 
+                            value={subscriberEmail}
+                            onChange={(event) => setSubscriberEmail(event.target.value)}
+                            required
                             className="bg-vanta border border-white/10 rounded-xl px-5 py-3 text-sm text-white placeholder:text-gray-700 focus:outline-none focus:border-accent/30 transition-colors w-full sm:w-72"
                         />
-                        <button className="bg-accent hover:bg-accent/90 text-white font-bold py-3 px-8 rounded-xl text-sm transition-all duration-300">
-                            Subscribe
+                        <button
+                            type="submit"
+                            disabled={subscribeStatus === "loading"}
+                            className="bg-accent hover:bg-accent/90 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3 px-8 rounded-xl text-sm transition-all duration-300"
+                        >
+                            {subscribeStatus === "loading" ? "Sending..." : "Subscribe"}
                         </button>
-                    </div>
+                        </div>
+                        {subscribeMessage && (
+                            <p className={`text-xs ${subscribeStatus === "success" ? "text-accent" : "text-red-300"}`}>
+                                {subscribeMessage}
+                            </p>
+                        )}
+                    </form>
                 </div>
 
                 {/* Bottom Bar */}
@@ -158,7 +201,7 @@ export default function Footer() {
                             <img src="/logo.png" alt="Xyraco" className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
                         </div>
                         <span className="text-xs text-gray-500 font-light tracking-wide">
-                            © {currentYear} <span className="text-white font-medium">XYRACO</span>. All rights reserved.
+                            <span className="text-white font-medium">Xyraco</span> &copy; 2026. All rights reserved.
                         </span>
                     </div>
 
@@ -167,6 +210,9 @@ export default function Footer() {
                             <Link 
                                 key={i} 
                                 href={social.href} 
+                                aria-label={social.label}
+                                target="_blank"
+                                rel="noreferrer noopener"
                                 className="text-gray-500 hover:text-accent transition-all transform hover:scale-110"
                             >
                                 <social.icon size={18} />

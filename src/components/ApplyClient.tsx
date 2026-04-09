@@ -6,10 +6,43 @@ import { ArrowRight, Check } from "lucide-react";
 
 export default function ApplyClient() {
     const [submitted, setSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setSubmitted(true);
+        setIsSubmitting(true);
+        setErrorMessage("");
+
+        const formData = new FormData(e.currentTarget);
+        const name = String(formData.get("name") || "");
+        const email = String(formData.get("email") || "");
+        const projectName = String(formData.get("projectName") || "");
+        const message = String(formData.get("message") || "");
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    message: `Project / Startup Name: ${projectName}\n\n${message}`,
+                    recaptchaToken: "",
+                }),
+            });
+            const data = (await response.json()) as { success: boolean; message: string };
+
+            if (!response.ok || !data.success) {
+                throw new Error(data.message || "Unable to send your request right now.");
+            }
+
+            setSubmitted(true);
+        } catch (error) {
+            setErrorMessage(error instanceof Error ? error.message : "Unable to send your request right now.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -67,12 +100,14 @@ export default function ApplyClient() {
                             <form onSubmit={handleSubmit} className="flex flex-col gap-10 flex-1">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                     <input
+                                        name="name"
                                         type="text"
                                         required
                                         placeholder="Your Name"
                                         className="w-full bg-transparent border-b border-black/15 pb-3 text-lg font-light text-black placeholder:text-black/25 focus:outline-none focus:border-black transition-colors"
                                     />
                                     <input
+                                        name="email"
                                         type="email"
                                         required
                                         placeholder="Email Address"
@@ -81,6 +116,7 @@ export default function ApplyClient() {
                                 </div>
 
                                 <input
+                                    name="projectName"
                                     type="text"
                                     required
                                     placeholder="Project / Startup Name"
@@ -88,19 +124,27 @@ export default function ApplyClient() {
                                 />
 
                                 <textarea
+                                    name="message"
                                     required
                                     rows={3}
                                     placeholder="The core problem you're solving..."
                                     className="w-full bg-transparent border-b border-black/15 pb-3 text-lg font-light text-black placeholder:text-black/25 focus:outline-none focus:border-black transition-colors resize-none"
                                 />
 
+                                {errorMessage && (
+                                    <p className="text-sm text-red-600">
+                                        {errorMessage}
+                                    </p>
+                                )}
+
                                 <div className="pt-2 flex justify-end mt-auto">
                                     <button
                                         type="submit"
+                                        disabled={isSubmitting}
                                         className="group flex items-center gap-5"
                                     >
                                         <span className="text-xs font-bold tracking-[0.4em] uppercase text-black/40 group-hover:text-black transition-colors">
-                                            Submit Proposal
+                                            {isSubmitting ? "Sending..." : "Submit Proposal"}
                                         </span>
                                         <div className="w-14 h-14 rounded-full border border-black/15 flex flex-col items-center justify-center group-hover:bg-black group-hover:border-black transition-all duration-500 overflow-hidden relative">
                                             <ArrowRight className="w-5 h-5 text-black group-hover:text-white absolute transition-transform duration-500 -translate-x-10 group-hover:translate-x-0" />
@@ -126,7 +170,7 @@ export default function ApplyClient() {
                             Request Sent.
                         </h2>
                         <p className="text-base text-gray-500 font-light max-w-sm mx-auto">
-                            We'll be in touch within 48 hours.
+                            We&apos;ll be in touch within 48 hours.
                         </p>
                     </motion.div>
                 )}

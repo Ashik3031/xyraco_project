@@ -102,7 +102,7 @@ export default function Header() {
                                             <Link
                                                 href={item.href}
                                                 onClick={() => setIsOpen(false)}
-                                                className={`text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight leading-none transition-colors duration-300 ${isActive ? "text-accent" : "text-[#0a0a0a] hover:text-accent"}`}
+                                                className={`text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight leading-none whitespace-nowrap transition-colors duration-300 ${isActive ? "text-accent" : "text-[#0a0a0a] hover:text-accent"}`}
                                             >
                                                 {item.name}
                                             </Link>

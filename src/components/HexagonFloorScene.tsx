@@ -10,6 +10,7 @@ export default function HexagonFloorScene() {
 
     useEffect(() => {
         if (!containerRef.current) return;
+        const container = containerRef.current;
 
         // --- Scene Setup ---
         const scene = new THREE.Scene();
@@ -45,7 +46,12 @@ export default function HexagonFloorScene() {
 
         // --- Camera Setup ---
         // Wide FOV to match Bipsync's dramatic distortion
-        const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const getContainerSize = () => ({
+            width: container.clientWidth || window.innerWidth,
+            height: container.clientHeight || window.innerHeight,
+        });
+        const initialSize = getContainerSize();
+        const camera = new THREE.PerspectiveCamera(65, initialSize.width / initialSize.height, 0.1, 1000);
         
         // Dynamic camera position based on screen width
         const updateCameraPos = () => {
@@ -63,14 +69,17 @@ export default function HexagonFloorScene() {
 
         // --- Renderer Setup ---
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(initialSize.width, initialSize.height);
+        renderer.domElement.style.display = "block";
+        renderer.domElement.style.width = "100%";
+        renderer.domElement.style.height = "100%";
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         
         // Post-processing setup (Tone mapping for better colors)
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.0;
         
-        containerRef.current.appendChild(renderer.domElement);
+        container.appendChild(renderer.domElement);
 
         // --- Hexagon Grid Setup ---
         const hexRadius = 4.0;
@@ -146,12 +155,15 @@ export default function HexagonFloorScene() {
 
         // --- Handle Resize & Input ---
         const handleResize = () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
+            const { width, height } = getContainerSize();
+            camera.aspect = width / height;
             updateCameraPos(); // Update position on resize
             camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setSize(width, height);
         };
         window.addEventListener("resize", handleResize);
+        const resizeObserver = new ResizeObserver(handleResize);
+        resizeObserver.observe(container);
 
         const handleMouseMove = (e: MouseEvent) => {
             // Normalized Device Coordinates (-1 to +1)
@@ -174,9 +186,7 @@ export default function HexagonFloorScene() {
             },
             { threshold: 0 }
         );
-        if (containerRef.current) {
-            observer.observe(containerRef.current);
-        }
+        observer.observe(container);
 
         const animate = () => {
             animationFrameId = requestAnimationFrame(animate);
@@ -259,10 +269,8 @@ export default function HexagonFloorScene() {
         return () => {
             window.removeEventListener("resize", handleResize);
             window.removeEventListener("mousemove", handleMouseMove);
-            if (containerRef.current) {
-                if (containerRef.current.contains(renderer.domElement)) {
-                    containerRef.current.removeChild(renderer.domElement);
-                }
+            if (container.contains(renderer.domElement)) {
+                container.removeChild(renderer.domElement);
             }
             // Dispose geometries and materials
             hexGeometry.dispose();
@@ -271,6 +279,7 @@ export default function HexagonFloorScene() {
             renderer.dispose();
             cancelAnimationFrame(animationFrameId);
             observer.disconnect();
+            resizeObserver.disconnect();
         };
     }, []);
 
