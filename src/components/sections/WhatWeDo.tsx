@@ -28,7 +28,7 @@ const services = [
     },
     {
         num: "03",
-        title: "Engineering & Build",
+        title: "Co-Building & Build",
         description: "Reliable, scalable, and production-ready full-stack systems.",
         icon: Zap,
         image: "https://res.cloudinary.com/dugtxybef/image/upload/v1774775432/60713_z8jpqe.jpg",
@@ -218,7 +218,7 @@ export default function WhatWeDo() {
                                 Ready<br />to Build?
                             </h3>
                             <p className="text-white/65 text-sm leading-relaxed font-light">
-                                Elite engineering for high-growth AI startups.
+                                Elite co-building for high-growth AI startups.
                             </p>
                             <div className="mt-5 flex gap-2">
                                 {[...Array(5)].map((_, i) => (

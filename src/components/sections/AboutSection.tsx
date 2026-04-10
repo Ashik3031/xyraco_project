@@ -3,7 +3,6 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import LazyVideo from "@/components/LazyVideo"; // still used by the bottom player block
 
 export default function AboutSection() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -131,26 +130,12 @@ export default function AboutSection() {
                     viewport={{ once: true, margin: "-50px" }}
                     className="w-full h-[60vh] md:h-[80vh] rounded-[40px] md:rounded-[60px] overflow-hidden relative flex items-center justify-center shadow-2xl group cursor-pointer"
                 >
-                    <LazyVideo
-                        src="https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
+                    <img
+                        src="https://res.cloudinary.com/dugtxybef/image/upload/v1775792427/Gemini_Generated_Image_8hkckc8hkckc8hkc_kanadd.png"
+                        alt="Xyraco digital business growth visual"
                         className="absolute inset-0 w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors duration-500 z-10"></div>
-
-                    {/* Clean play button replacing PLAY REEL text */}
-                    <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="relative z-20 w-24 h-24 md:w-36 md:h-36 bg-white shadow-[0_10px_40px_rgba(0,0,0,0.15)] backdrop-blur-md rounded-full flex items-center justify-center"
-                    >
-                        <svg className="w-8 h-8 md:w-12 md:h-12 text-black ml-2" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z" />
-                        </svg>
-                    </motion.div>
                 </motion.div>
             </div>
         </section>

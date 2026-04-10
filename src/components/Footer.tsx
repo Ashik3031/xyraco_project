@@ -124,6 +124,10 @@ export default function Footer() {
                                 <Phone size={14} className="text-accent/60 group-hover:text-accent" />
                                 <span className="text-xs font-light">UAE: +971 54 469 2469</span>
                             </a>
+                            <a href="tel:+919567039149" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
+                                <Phone size={14} className="text-accent/60 group-hover:text-accent" />
+                                <span className="text-xs font-light">India: +91 95670 39149</span>
+                            </a>
                             <a href="https://wa.me/919497411513" target="_blank" rel="noreferrer noopener" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
                                 <MessageCircle size={14} className="text-accent/60 group-hover:text-accent" />
                                 <span className="text-xs font-light">WhatsApp: +91 94974 11513</span>

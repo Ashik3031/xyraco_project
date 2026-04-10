@@ -39,7 +39,7 @@ const serviceCategories = [
         description: "Designing user experiences that are simple, intuitive, and conversion-focused. Usability over visual trends."
     },
     {
-        title: "ENGINEERING & BUILD",
+        title: "CO-BUILDING & BUILD",
         image: "https://res.cloudinary.com/dugtxybef/image/upload/v1774775432/60713_z8jpqe.jpg",
         services: [
             "Software Development",
@@ -47,7 +47,7 @@ const serviceCategories = [
             "Mobile Development",
             "No-Code & Low-Code MVPs"
         ],
-        description: "Full-stack software development focused on reliability and scalability. We build production-ready systems."
+        description: "Full-stack co-building focused on reliability and scalability. We build production-ready systems."
     },
     {
         title: "AI & GENAI SOLUTIONS",
@@ -298,7 +298,7 @@ export default function ServicesPage() {
                                     
                                     {/* Bottom Visual Tag */}
                                     <div className="flex justify-end pt-12">
-                                        <span className="text-[10px] font-bold uppercase tracking-[1em] opacity-5">Xyraco Digital Engineering</span>
+                                        <span className="text-[10px] font-bold uppercase tracking-[1em] opacity-5">Xyraco Digital Co-Building</span>
                                     </div>
                                 </div>
                             </div>

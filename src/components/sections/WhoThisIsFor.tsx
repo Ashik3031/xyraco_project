@@ -19,7 +19,7 @@ const processSteps = [
     {
         id: "03",
         title: "BUILD",
-        description: "Turn It Real. Design, engineering, and AI come together to create a working product — built to function, not just launch.",
+        description: "Turn It Real. Design, co-building, and AI come together to create a working product — built to function, not just launch.",
         image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200",
     },
     {

@@ -18,7 +18,7 @@ const steps = [
     {
         step: "03",
         title: "BUILD",
-        description: "Turn It Real. Design, engineering, and AI come together to create a working product — built to function, not just launch.",
+        description: "Turn It Real. Design, co-building, and AI come together to create a working product — built to function, not just launch.",
     },
     {
         step: "04",
@@ -32,7 +32,7 @@ export default function HowItWorks() {
         <main className="min-h-screen pb-40 bg-white">
             <PageHeader
                 title="THE PROCESS"
-                description="A high-velocity engineering engine designed to turn raw ideas into category leaders."
+                description="Startup Co-Building Studio designed to turn raw ideas into category leaders."
             />
 
             <section className="container mx-auto px-6 mt-32">

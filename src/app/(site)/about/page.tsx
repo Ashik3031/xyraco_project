@@ -244,7 +244,7 @@ export default function AboutPage() {
                         <div className="lg:w-3/5 space-y-12">
                             <p className="text-[10px] uppercase font-bold tracking-[0.4em] text-black/40">Origins</p>
                             <h3 className="text-3xl md:text-5xl lg:text-5xl font-normal leading-tight tracking-tight">
-                                Founded by three professionals with experience across diverse landscapes — XYRACO brings together <span className="font-serif italic text-black/60">product, engineering, and systems thinking</span>.
+                                Founded by three professionals with experience across diverse landscapes — XYRACO brings together <span className="font-serif italic text-black/60">product, co-building, and systems thinking</span>.
                             </h3>
                             <p className="text-xl md:text-2xl text-gray-500 font-light leading-relaxed max-w-2xl">
                                 Our disciplines shape how we approach every build — focusing on technical rigor while remaining adaptable to the evolving needs of the founders we partner with.

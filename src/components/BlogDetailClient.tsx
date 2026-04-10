@@ -21,7 +21,7 @@ export default function BlogDetailClient({ params }: { params: { slug: string } 
 
             <PageHeader
                 title={title}
-                description="An in-depth analysis of the intersection between engineering, economics, and artificial intelligence in the modern startup landscape."
+                description="An in-depth analysis of the intersection between co-building, economics, and artificial intelligence in the modern startup landscape."
             />
 
             <article className="container mx-auto px-6 mt-32 max-w-4xl">
@@ -37,7 +37,7 @@ export default function BlogDetailClient({ params }: { params: { slug: string } 
 
                     <h2 className="text-4xl font-bold tracking-super-tight text-black mt-20 mb-10 uppercase italic">The Second Shift: Alignment</h2>
                     <p className="text-gray-500 font-light leading-relaxed mb-12">
-                        Agencies are built for billable hours. Co-builders are built for equity. This alignment changes every decision made in the engineering process. We don&apos;t build for the sake of building; we build for the sake of winning.
+                        Agencies are built for billable hours. Co-builders are built for equity. This alignment changes every decision made in the co-building process. We don't build for the sake of building; we build for the sake of winning.
                     </p>
 
                     <div className="p-12 rounded-[40px] bg-black/[0.02] border border-black/5 mt-32">

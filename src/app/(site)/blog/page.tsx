@@ -32,7 +32,7 @@ export default function BlogPage() {
         <main className="min-h-screen pb-40 bg-white">
             <PageHeader
                 title="INSIGHTS"
-                description="Raw thoughts on engineering, AI economics, and the future of business building."
+                description="Raw thoughts on co-building, AI economics, and the future of business building."
             />
 
             <section className="container mx-auto px-6 mt-32">

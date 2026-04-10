@@ -3,11 +3,14 @@ import ApplyClient from "@/components/ApplyClient";
 
 export const metadata: Metadata = {
     title: "Apply for Zero-Upfront Startup Development | Xyraco",
-    description: "Apply to build your startup with Xyraco. Submit your idea for AI startup building, MVP development, validation, and co-building partnership.",
+    description: "Apply to work with Xyraco, a startup development partner helping founders build and scale startups with product, brand, and go-to-market support.",
     keywords: [
         "apply startup builder",
-        "zero upfront startup development",
-        "build startup without funding",
+        "startup development partner",
+        "startup tech partner",
+        "build and scale startup",
+        "product development company UAE",
+        "go to market strategy services",
         "MVP development application",
         "Xyraco apply",
     ],

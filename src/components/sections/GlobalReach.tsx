@@ -43,7 +43,7 @@ export default function GlobalReach() {
                             transition={{ delay: 0.2 }}
                             className="text-xl text-white/40 font-light leading-relaxed border-l border-white/10 pl-8"
                         >
-                            Operating from strategic hubs to provide 24/7 engineering velocity and global market insights.
+                            Operating from strategic hubs to provide 24/7 co-building velocity and global market insights.
                         </motion.p>
                     </div>
                 </div>

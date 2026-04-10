@@ -12,12 +12,13 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://xyraco.com"),
-    title: "Build Startups Without Upfront Cost | Xyraco",
-    description: "Xyraco helps founders build and launch startups with AI, MVP development, product strategy, and zero-upfront startup co-building.",
+    title: "Xyraco | Co-Building & Scaling Digital Businesses",
+    description: "Xyraco is a startup development partner in the UAE helping founders build and scale startups with product development, digital transformation, brand strategy, and go-to-market support.",
     keywords: [
         "Xyraco",
         "Xyraco UAE",
         "Xyraco Sharjah",
+        "startup development partner",
         "startup builder",
         "startup co-builder",
         "AI startup builder",
@@ -25,6 +26,13 @@ export const metadata: Metadata = {
         "MVP development company",
         "AI MVP development",
         "startup development company",
+        "build and scale startup",
+        "startup tech partner",
+        "product development company UAE",
+        "digital transformation company",
+        "brand strategy agency UAE",
+        "go to market strategy services",
+        "how to scale a startup fast",
         "build startup without funding",
         "build startup without upfront cost",
         "zero upfront startup development",
@@ -38,8 +46,8 @@ export const metadata: Metadata = {
         canonical: "/",
     },
     openGraph: {
-        title: "Build Startups Without Upfront Cost | Xyraco",
-        description: "AI startup builder for founders who need MVP development, startup strategy, and launch support without upfront cost.",
+        title: "Xyraco | Co-Building & Scaling Digital Businesses",
+        description: "Startup development partner in the UAE for founders who want to build and scale startups with product, brand, and go-to-market support.",
         url: "https://xyraco.com",
         siteName: "Xyraco",
         images: [
@@ -55,8 +63,8 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Build Startups Without Upfront Cost | Xyraco",
-        description: "AI startup builder and MVP development partner for founders.",
+        title: "Xyraco | Co-Building & Scaling Digital Businesses",
+        description: "Startup development partner helping founders build and scale startups in the UAE.",
         images: ["/logo.png"],
     },
     robots: {
@@ -84,7 +92,7 @@ export default function RootLayout({
             name: "Xyraco",
             url: "https://xyraco.com",
             logo: "https://xyraco.com/logo.png",
-            description: "Xyraco helps founders build startups from idea to MVP and launch using AI, product strategy, and zero-upfront co-building.",
+            description: "Xyraco helps founders build and scale startups through product development, digital transformation, brand strategy, and go-to-market execution.",
             email: "info@xyraco.com",
             telephone: "+971544692469",
             sameAs: [
@@ -119,7 +127,7 @@ export default function RootLayout({
             "@type": "WebSite",
             name: "Xyraco",
             url: "https://xyraco.com",
-            description: "AI startup builder, MVP development company, and startup co-building partner.",
+            description: "Startup development partner and product development company in the UAE.",
             inLanguage: "en",
         },
         {
@@ -148,9 +156,9 @@ export default function RootLayout({
                 name: "Xyraco",
                 url: "https://xyraco.com",
             },
-            serviceType: "Startup development, MVP development, AI agents, product strategy, web app development, mobile app development",
+            serviceType: "Startup development partner, product development company UAE, digital transformation company, brand strategy agency UAE, go-to-market strategy services",
             areaServed: "Worldwide",
-            description: "Xyraco helps founders validate ideas, design products, build MVPs, create AI agents, and launch startups without upfront cost for selected projects.",
+            description: "Xyraco helps founders validate ideas, build products, shape brands, plan go-to-market strategy, and scale startups faster.",
         },
     ];
 

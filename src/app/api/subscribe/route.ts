@@ -66,10 +66,12 @@ export async function POST(request: NextRequest) {
                 subject: "Welcome to Xyraco",
                 html: `
                     <div style="font-family: Arial, sans-serif; line-height: 1.7; color: #111;">
-                        <h2>Welcome to Xyraco.</h2>
-                        <p>You are subscribed. We will send thoughtful updates on startup building, MVP launches, AI systems, and product growth.</p>
-                        <p>No noise. Just useful signals from the team building what should exist in the real world.</p>
-                        <p><strong>Team Xyraco</strong></p>
+                        <p>Welcome to Xyraco,</p>
+                        <p>You’re in.</p>
+                        <p>We’ll be sharing simple, useful updates on what we’re building — startups, MVPs, AI systems, and product growth.</p>
+                        <p>No spam. Just things that matter.</p>
+                        <p>Stay connected.</p>
+                        <p>— Team Xyraco</p>
                     </div>
                 `,
             }),
